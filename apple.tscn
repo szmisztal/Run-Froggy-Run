@@ -71,7 +71,7 @@ region = Rect2(480, 0, 32, 32)
 atlas = ExtResource("1_3ed3y")
 region = Rect2(512, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3xt20"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_n78qv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -139,7 +139,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_3xt20")
+sprite_frames = SubResource("SpriteFrames_n78qv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rrsqo")

@@ -43,7 +43,10 @@ func die():
 func _on_area_entered(area):
 	if area.is_in_group("fruits"):
 		area.pickup()
-		pickup.emit()
+		pickup.emit("fruits")
+	if area.is_in_group("powerups"):
+		area.pickup()
+		pickup.emit("powerups")
 	if area.is_in_group("obstacles"):
 		area.hurt()
 		die()
