@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c57mgc1xmkko5"]
+[gd_scene load_steps=6 format=3 uid="uid://c57mgc1xmkko5"]
 
 [ext_resource type="Texture2D" uid="uid://bm2wma4apnjc6" path="res://assets/background.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cm0reo6xrnbor" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cisupas050wwa" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bx6clbgl3tibt" path="res://apple.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c6kv1f446x6vy" path="res://hud.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_1bvp3")
@@ -22,3 +23,10 @@ stretch_mode = 1
 position = Vector2(216, 48)
 
 [node name="GameTimer" type="Timer" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("5_lquwl")]
+
+[connection signal="hurt" from="Player" to="." method="_on_player_hurt"]
+[connection signal="pickup" from="Player" to="." method="_on_player_pickup"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

@@ -14,7 +14,6 @@ func _ready():
 	screensize = get_viewport().get_visible_rect().size
 	$Player.screensize = screensize
 	$Player.hide()
-	# new_game()
 	
 func new_game():
 	playing = true
@@ -25,6 +24,8 @@ func new_game():
 	$Player.show()
 	$GameTimer.start()
 	spawn_fruits()
+	$HUD.update_score(score)
+	$HUD.update_timer(time_left)
 	
 func spawn_fruits():
 	for i in level + 4:
@@ -38,3 +39,26 @@ func _process(delta):
 		level += 1
 		time_left += 10
 		spawn_fruits()
+
+func _on_game_timer_timeout():
+	time_left -= 1
+	$HUD.update_timer(time_left)
+	if time_left < 0:
+		game_over()
+	
+func _on_player_hurt():
+	game_over()
+	
+func _on_player_pickup():
+	score += 1
+	$HUD.update_score(score)
+	
+func game_over():
+	playing = false
+	$Timer.stop()
+	get_tree().call_group("fruits", "queue_free")
+	$HUD.show_game_over()
+	$Player.die()
+
+func _on_hud_start_game():
+	new_game()
