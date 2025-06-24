@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Run Froggy Run"
-run/main_scene="uid://cisupas050wwa"
+run/main_scene="uid://c57mgc1xmkko5"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

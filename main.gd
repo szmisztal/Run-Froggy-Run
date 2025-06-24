@@ -2,6 +2,7 @@ extends Node
 
 
 @export var pickup_scene : PackedScene
+@export var obstacle_scene : PackedScene
 @export var power_up_scene : PackedScene
 @export var playtime = 30
 
@@ -29,6 +30,9 @@ func new_game():
 	$HUD.update_timer(time_left)
 	
 func spawn_fruits():
+	var s = obstacle_scene.instantiate()
+	add_child(s)
+	s.position = Vector2(randi_range(0, screensize.x), randi_range(0, screensize.y))
 	for i in level + 4:
 		var f = pickup_scene.instantiate()
 		add_child(f)
@@ -69,6 +73,7 @@ func game_over():
 	playing = false
 	$GameTimer.stop()
 	get_tree().call_group("fruits", "queue_free")
+	get_tree().call_group("obstacles", "queue_free")
 	$HUD.show_game_over()
 	$Player.die()
 
